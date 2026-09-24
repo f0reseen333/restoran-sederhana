@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoran Sederhana - Menu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf6ec;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ====== NAVBAR / HEADER ====== */
+        header {
+            background: #b22222;
+            color: #fff;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        header .brand .logo { font-size: 1.8em; }
+
+        header .brand .nama {
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        header .brand .slogan {
+            font-size: 0.75em;
+            font-style: italic;
+            color: #ffd7d7;
+            display: block;
+            margin-top: -4px;
+            letter-spacing: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding-bottom: 4px;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        header nav ul li a:hover,
+        header nav ul li a.active {
+            color: #ffd700;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            text-align: center;
+            padding: 40px 20px 20px;
+            background: linear-gradient(135deg, #fff8f0 0%, #fde2d0 100%);
+        }
+
+        .hero h1 {
+            color: #b22222;
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        .hero p.tagline {
+            font-style: italic;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* ====== VIDEO PROMOSI ====== */
+        .promo-section {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .promo-section h2 {
+            color: #8b0000;
+            border-left: 5px solid #b22222;
+            padding-left: 15px;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .video-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+        }
+
+        /* ====== KONTEN MENU ====== */
+        .konten {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2.section-title {
+            color: #8b0000;
+            margin-top: 30px;
+            border-left: 5px solid #b22222;
+            padding-left: 15px;
+            margin-bottom: 10px;
+        }
+
+        p.penjelasan {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* ====== ORDERED LIST (LANGKAH PEMESANAN) ====== */
+        ol.langkah {
+            background: #fff;
+            padding: 20px 20px 20px 50px;
+            border-radius: 8px;
+            border-left: 5px solid #b22222;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin: 15px 0;
+        }
+
+        ol.langkah li {
+            margin-bottom: 10px;
+            padding-left: 8px;
+        }
+
+        ol.langkah li strong {
+            color: #8b0000;
+        }
+
+        /* ====== NESTED LIST (KATEGORI MENU) ====== */
+        ul.kategori {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        ul.kategori > li {
+            background: #fff;
+            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            border-left: 5px solid #b22222;
+        }
+
+        ul.kategori > li > .judul-kategori {
+            font-weight: bold;
+            font-size: 1.15em;
+            color: #8b0000;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        ul.kategori ul {
+            list-style-type: circle;
+            padding-left: 25px;
+            margin-top: 5px;
+        }
+
+        ul.kategori ul li {
+            padding: 4px 0;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        ul.kategori ul li .harga {
+            color: #b22222;
+            font-weight: bold;
+        }
+
+        /* ====== ALAMAT ====== */
+        .address {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .address h3 {
+            color: #b22222;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            color: #888;
+            font-size: 0.9em;
+            background: #fff8f0;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 700px) {
+            header { flex-direction: column; gap: 12px; padding: 15px 20px; }
+            header nav ul { gap: 15px; font-size: 0.9em; }
+            header .brand .nama { font-size: 1.2em; }
+            .hero h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== HEADER / NAVBAR ====== -->
+    <header>
+        <div class="brand">
+            <span class="logo">🍽️</span>
+            <div>
+                <span class="nama">Restoran Sederhana</span>
+                <span class="slogan">Cita rasa autentik, bahan segar pilihan</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Beranda</a></li>
+                <li><a href="#cara-pesan">Cara Pesan</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <h1>Selamat Datang</h1>
+        <p class="tagline">"Nikmati hidangan lezat dengan cita rasa autentik yang dibuat dari bahan-bahan segar pilihan."</p>
+    </section>
+
+    <!-- ====== VIDEO PROMOSI ====== -->
+    <section class="promo-section">
+        <h2>🎬 Video Promosi Spesial</h2>
+        <div class="video-wrapper">
+            <video id="promoVideo" controls autoplay muted loop playsinline preload="auto">
+                <source src="promosi.mp4" type="video/mp4">
+                Browser Anda tidak mendukung tag video.
+            </video>
+        </div>
+    </section>
+
+    <!-- ====== KONTEN ====== -->
+    <div class="konten">
+
+        <!-- Paragraf Pembuka -->
+        <p class="penjelasan">
+            Selamat datang di <strong>Restoran Sederhana</strong>! Kami hadir untuk memberikan pengalaman
+            kuliner terbaik bagi Anda dan keluarga. Halaman ini menjelaskan <em>cara memesan makanan</em>
+            di restoran kami, serta <em>daftar menu lengkap</em> yang terdiri dari makanan, minuman, dan dessert.
+        </p>
+
+        <!-- ====== ORDERED LIST: LANGKAH PEMESANAN ====== -->
+        <h2 class="section-title" id="cara-pesan">📝 Cara Memesan Makanan</h2>
+        <p class="penjelasan">
+            Berikut adalah langkah-langkah untuk memesan makanan di Restoran Sederhana:
+        </p>
+        <ol class="langkah">
+            <li><strong>Datang & Pilih Meja.</strong> Tamu datang ke restoran, lalu duduk di meja yang tersedia atau menunggu pelayan mengarahkan.</li>
+            <li><strong>Terima Buku Menu.</strong> Pelayan memberikan buku menu yang berisi daftar makanan, minuman, dan dessert.</li>
+            <li><strong>Pilih Menu.</strong> Tamu memilih hidangan yang diinginkan sesuai selera, bisa menanyakan rekomendasi ke pelayan.</li>
+            <li><strong>Pesan ke Pelayan.</strong> Tamu menyampaikan pesanan kepada pelayan, lalu pelayan mencatat dan mengonfirmasi ulang.</li>
+            <li><strong>Pesanan Diproses di Dapur.</strong> Dapur mulai memasak pesanan dengan bahan segar sesuai standar resep restoran.</li>
+            <li><strong>Hidangan Disajikan.</strong> Pelayan mengantar makanan dan minuman ke meja tamu dengan rapi dan hangat.</li>
+            <li><strong>Makan & Nikmati.</strong> Tamu menikmati hidangan, lalu bisa memesan tambahan jika masih ingin makan lagi.</li>
+            <li><strong>Pembayaran.</strong> Setelah selesai, tamu memanggil pelayan untuk membayar di kasir atau langsung di meja.</li>
+        </ol>
+
+        <!-- ====== NESTED LIST: KATEGORI MENU ====== -->
+        <h2 class="section-title" id="menu">📋 Daftar Menu Restoran</h2>
+        <p class="penjelasan">
+            Menu Restoran Sederhana terbagi menjadi tiga kategori utama. Setiap kategori berisi
+            beberapa pilihan item beserta harganya:
+        </p>
+
+        <ul class="kategori">
+            <!-- Kategori Makanan -->
+            <li>
+                <span class="judul-kategori">🍕 Makanan</span>
+                <ul>
+                    <li><span>Spaghetti Aglio Olio</span><span class="harga">Rp 45.000</span></li>
+                    <li><span>Beef Burger Deluxe</span><span class="harga">Rp 55.000</span></li>
+                    <li><span>Ayam Bakar Pedas</span><span class="harga">Rp 40.000</span></li>
+                    <li><span>Salad Segar</span><span class="harga">Rp 30.000</span></li>
+                    <li><span>Sushi Salmon</span><span class="harga">Rp 65.000</span></li>
+                </ul>
+            </li>
+
+            <!-- Kategori Minuman -->
+            <li>
+                <span class="judul-kategori">🥤 Minuman</span>
+                <ul>
+                    <li><span>Es Kopi Susu</span><span class="harga">Rp 18.000</span></li>
+                    <li><span>Lemonade Segar</span><span class="harga">Rp 15.000</span></li>
+                    <li><span>Bubble Tea</span><span class="harga">Rp 22.000</span></li>
+                    <li><span>Jus Alpukat</span><span class="harga">Rp 20.000</span></li>
+                </ul>
+            </li>
+
+            <!-- Kategori Dessert -->
+            <li>
+                <span class="judul-kategori">🍰 Dessert</span>
+                <ul>
+                    <li><span>Puding Cokelat</span><span class="harga">Rp 15.000</span></li>
+                    <li><span>Es Krim Vanilla</span><span class="harga">Rp 12.000</span></li>
+                    <li><span>Cheese Cake</span><span class="harga">Rp 28.000</span></li>
+                    <li><span>Pisang Goreng Madu</span><span class="harga">Rp 18.000</span></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Alamat -->
+        <div class="address" id="kontak">
+            <h3>📍 Alamat Restoran</h3>
+            <p>
+                <strong>Restoran Sederhana</strong><br>
+                Jl. Kuliner No. 123, Kelurahan Sedap,<br>
+                Kecamatan Lezat, Kota Makan, 12345<br><br>
+                📞 Telepon: (021) 1234-5678<br>
+                🕒 Jam Buka: 10.00 - 22.00 WIB (Setiap Hari)
+            </p>
+        </div>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        &copy; 2026 Restoran Sederhana. Nikmati setiap suapan dengan kebahagiaan.
+    </footer>
+
+</body>
+</html>
